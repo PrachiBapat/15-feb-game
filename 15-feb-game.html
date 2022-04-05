@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Game</title>
+        <style>
+            body {
+                margin: 0 auto;
+                padding: 0;
+                box-sizing: border-box;
+                text-align: center;
+            }
+
+            .image {
+                width: 400px;
+                height: 400px;
+                background-image: url(1.jpg);
+                background-repeat: no-repeat;
+                background-position: center;
+                margin: 20px auto;
+            }
+
+            table {
+                width: 400px;
+                height: 400px;
+                border: 1px solid black;
+            }
+
+            table td {
+                border: 3px solid black;
+            }
+
+            /*td {
+                transform: rotateY(0deg);
+                opacity: 1;
+                transform-style: preserve-3d;
+                transition: opacity 0.5s, transform 0.5s;
+                background-color: gray;
+            }
+
+            td:hover {
+                opacity: 0;
+                transform: rotateY(180deg);
+            }*/
+
+            .static {
+               background-color: rgb(237, 198, 248);
+            }
+
+            .spin {
+                transform: rotateY(180deg);
+                
+            }
+        </style>
+        <script>
+            var count = 0;
+
+
+            function create() {
+                document.querySelector("table").addEventListener("mouseover", show);
+                reset();
+            }
+
+            // clicking on the button reset everything
+            function reset() {
+                count = 0;
+
+                var blocks = document.querySelectorAll("td");
+
+                for (var i = 0; i < blocks.length; i++) {
+                    blocks[i].className = "static";
+                }
+            }
+
+            function show(event) {
+                var currentBlock = event.target;
+
+                if (currentBlock.className == "static" && count < 5) {
+                    currentBlock.className = "spin";
+                    count++;
+                    document.querySelector("#counter").innerHTML = count;
+                }
+            }
+        </script>
+    </head>
+    <body onload="create()">
+
+        <div class="image">
+            <table border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="reset">
+            <h1 id="reset-message">Attempts used : <span id="counter">0</span>/5</h1>
+            <button onclick ="reset()">Reset</button>
+        </div>
+
+    </body>
+</html>
